@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
         if (scanf("%d", measurments + actualIndex) != 1)
         {
             fprintf(stderr, "Invalid input!\n");
-            return 1;
+            return EXIT_FAILURE;
         }
         actualIndex++;
     }
@@ -42,6 +42,12 @@ int main(int argc, char const *argv[])
         actualIndex = actualIndex == DEPTH ? 0 : actualIndex + 1;
     }
 
+    if (!feof(stdin))
+    {
+        fprintf(stderr, "Invalid format of input!");
+        return EXIT_FAILURE;
+    }
+
     printf("%d measurements larger than the previous %d: %d\n", DEPTH, DEPTH, increased);
-    return 0;
+    return EXIT_SUCCESS;
 }
