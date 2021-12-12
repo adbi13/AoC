@@ -4,15 +4,19 @@
 
 #define BINARY_LENGTH 12
 
-void printBinary(unsigned long n)
+void printBinary(unsigned long num)
 {
-    while (n) {
-    if (n & 1)
-        printf("1");
-    else
-        printf("0");
-
-    n >>= 1;
+    while (num)
+    {
+        if (num & 1)
+        {
+            printf("1");
+        }   
+        else
+        {
+            printf("0");
+        }
+        num >>= 1;
     }
     printf("\n");
 }
@@ -53,7 +57,6 @@ int main(int argc, char const *argv[])
     unsigned long epsilonRate = 0;
     for (size_t actualBit = 0; actualBit < BINARY_LENGTH; actualBit++)
     {
-        printf("%d ", frequency[actualBit]);
         if (frequency[actualBit] > 0)
         {
             gammaRate |= mask;
@@ -66,7 +69,10 @@ int main(int argc, char const *argv[])
     }
 
     unsigned long result = gammaRate * epsilonRate;
+
+    printf("Gamma rate: %d | ", gammaRate);
     printBinary(gammaRate);
+    printf("Epsilon rate: %d | ", epsilonRate);
     printBinary(epsilonRate);
     printf("Result: %lu\n", result);
 }
