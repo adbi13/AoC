@@ -1,5 +1,11 @@
 # Input files
+inputs/
 *.txt
 
 # Executables
 *.out
+bin/
+obj/
+
+# VS Code
+.vscode/
