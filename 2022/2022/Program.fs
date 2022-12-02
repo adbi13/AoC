@@ -2,3 +2,8 @@
 
 printfn $"Solution of the first day: {result}"
 printfn $"Solution of the first day Part Two: {resultPartTwo}"
+
+open Day02
+
+printfn $"Solution of the second day: {result}"
+printfn $"Solution of the second day Part Two: {resultPartTwo}"
