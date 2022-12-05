@@ -5,6 +5,7 @@
     <RootNamespace>_2022</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="05.fs" />
     <Compile Include="04.fs" />
     <Compile Include="03.fs" />
     <Compile Include="02.fs" />
