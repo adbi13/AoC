@@ -1,3 +1,6 @@
-﻿open Day08
+﻿open Day10
 
-printfn $"Result: {resultPartTwo}"
+// printfn $"Result: {result}"
+
+resultPartTwo
+
