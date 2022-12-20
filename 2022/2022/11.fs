@@ -1,5 +1,7 @@
 module Day11
 
+#nowarn "3391"
+
 type Monkey(id: int, items: int list, operation: bigint -> bigint, test: bigint -> int) =
     let mutable items = List.map (fun (item: int) -> bigint item) items
     let mutable (inspections: bigint) = bigint 0

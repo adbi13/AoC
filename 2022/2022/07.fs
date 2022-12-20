@@ -1,5 +1,7 @@
 module Day07
 
+#nowarn "0025"
+
 open System.IO
 open System.Collections.Generic
 
