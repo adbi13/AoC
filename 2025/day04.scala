@@ -1,4 +1,15 @@
-import scala.annotation.init
+def removeRolls(rollsMap: Array[Array[Option[Int]]]): Int =
+    var removed: Int = 0
+    for y <- 0 to rollsMap.length - 1
+        x <- 0 to rollsMap(0).length - 1 do
+        if rollsMap(y)(x).isDefined then
+            if rollsMap(y)(x).get < 4 then
+                removed += 1
+                rollsMap(y)(x) = None
+            else
+                rollsMap(y)(x) = Some(0)
+    removed
+
 def initNumbers(rollsMap: Array[Array[Option[Int]]]): Unit =
     for y <- 0 to rollsMap.length - 1
         x <- 0 to rollsMap(0).length - 1 do
@@ -38,8 +49,10 @@ def day04(): Unit =
             case '@' => Some(0)
             case '.' => None
         ).toArray).toArray
-    initNumbers(rollsMap)
-    println(rollsMap.flatMap(_.map(_ match
-        case Some(count) => if count < 4 then 1 else 0
-        case None => 0
-    )).sum)
+    var total = 0
+    var removed = 1
+    while removed > 0 do
+        initNumbers(rollsMap)
+        removed = removeRolls(rollsMap)
+        total += removed
+    println(total)
