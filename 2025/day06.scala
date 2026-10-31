@@ -4,7 +4,7 @@ def part1(lines: Seq[String]): Long =
         .toArray
         .transpose.map(line => (line.dropRight(1).map(_.toLong), line.last))
     
-    val result = problems.map((numbers, operator) => operator match
+    problems.map((numbers, operator) => operator match
         case "*" => numbers.fold(1L)((a, b) => a * b)
         case "+" => numbers.fold(0L)((a, b) => a + b)
     ).sum
