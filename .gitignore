@@ -9,3 +9,11 @@ obj/
 
 # VS Code
 .vscode/
+
+# Scala
+.bsp/
+.metals/
+.scala-build/
+
+# MacOS
+.DS_Store
