@@ -1,15 +1,28 @@
+import scala.util.boundary, boundary.break
+
 def createRanges(range: String): Iterable[BigInt] =
     val Array(lowerBound, upperBound) = range.split("-").map(BigInt(_))
     (lowerBound to upperBound)
 
-def isValidId(id: BigInt): Boolean =
+def isInvalidId(id: BigInt): Boolean =
     val stringId: String = id.toString()
     val idLength: Int = stringId.length()
     idLength % 2 == 0
     && stringId.slice(0, idLength / 2) == stringId.slice(idLength / 2, idLength)
 
+def isInvalidId2(id: BigInt): Boolean =
+    val stringId: String = id.toString()
+    val idLength: Int = stringId.length()
+    boundary {
+        for patternLength <- 1 to idLength / 2 do
+            if idLength % patternLength == 0
+                && stringId == stringId.slice(0, patternLength) * (idLength / patternLength) then
+                break(true)
+        false
+    }
+
 @main
 def part01(): Unit =
     val path: os.Path = os.pwd / "day02.txt"
     val content: String = os.read(path).strip()
-    println(content.split(",").flatMap(createRanges).filter(isValidId).sum)
+    println(content.split(",").flatMap(createRanges).filter(isInvalidId2).sum)
