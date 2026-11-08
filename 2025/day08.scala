@@ -16,35 +16,31 @@ def day08(): Unit =
         distances.append((i, j, distance))
     println(distances.length)
     var maxCircuitId = 0
-    var connected = 0
+    var resultPart2 = 0L
     boundary {
-        for distance <- distances.sortBy(_._3).take(1000) do
-            print(s"(${coordinates(distance._1)(0)}, ${coordinates(distance._1)(1)}, ${coordinates(distance._1)(2)})/${circuits(distance._1)}, (${coordinates(distance._2)(0)}, ${coordinates(distance._2)(1)}, ${coordinates(distance._2)(2)})/${circuits(distance._2)}: ${distance._3}")
+        for distance <- distances.sortBy(_._3) do
             if circuits(distance._1) == 0 && circuits(distance._2) == 0 then
                 maxCircuitId += 1
                 circuits(distance._1) = maxCircuitId
                 circuits(distance._2) = maxCircuitId
-                connected += 1
             else if circuits(distance._1) == 0 then
                 circuits(distance._1) = circuits(distance._2)
-                connected += 1
             else if circuits(distance._2) == 0 then
                 circuits(distance._2) = circuits(distance._1)
-                connected += 1
             else if circuits(distance._1) != circuits(distance._2) then
                 var oldId = circuits(distance._1)
                 for i <- 0 to circuits.length - 1 do
                     if circuits(i) == oldId then
-                        // print(s"${circuits(i)}")
                         circuits(i) = circuits(distance._2)
-                        // println(s" -> ${circuits(i)}")
-                connected += 1
 
-            println(s" -> ${circuits(distance._1)}/${circuits(distance._2)}")
-            // if connected == 9 then
-            //     boundary.break()
+            if circuits.distinct.length == 1 then
+                resultPart2 = coordinates(distance._1)(0).toLong * coordinates(distance._2)(0)
+                boundary.break()
     }
 
+    println(resultPart2)
+
+    /* PART 01
     circuits
         .groupBy(identity)
         .foreach((key, values) => println(s"$key: ${values.length}"))
@@ -59,6 +55,4 @@ def day08(): Unit =
         .fold(1)(_ * _)
     
     println(result)
-
-    
-
+    */
