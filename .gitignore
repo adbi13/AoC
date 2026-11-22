@@ -4,7 +4,7 @@ inputs/
 
 # Executables
 *.out
-bin/
+bin/*
 obj/
 
 # VS Code
@@ -17,3 +17,7 @@ obj/
 
 # MacOS
 .DS_Store
+
+# Rust
+target/
+!day*.rs
